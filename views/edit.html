@@ -8,9 +8,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Students Info System</title>
+    <title>Add Students</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -99,37 +98,32 @@
                     </div>
                 </div> -->
 
-                <h2 class="sub-header">STUDENTS LIST</h2>
-                <a class="btn btn-success" href="/students/new">ADD</a>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>name</th>
-                                <th>gender</th>
-                                <th>age</th>
-                                <th>info</th>
-                                <th>operate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{each students}}
-                            <tr>
-                                <td>{{$value.id}}</td>
-                                <td>{{$value.name}}</td>
-                                <td>{{$value.age}}</td>
-                                <td>{{$value.gender == 1 ? 'male' : 'famale'}}</td>
-                                <td>{{$value.info}}</td>
-                                <td>
-                                    <a href="/students/edit?id={{$value.id}}" class="btn">Edit</a>
-                                    <a href="/students/delete?id={{$value.id}}" class="btn">Delete</a>
-                                </td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
+                <h2 class="sub-header">UPDATE STUDENT</h2>
+                <form action="/students/edit" method="POST">
+                    <input type="hidden" value="{{student.id}}" name="id">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Please input name" value="{{student.name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="inlineRadio1" value="1" {{if student.gender == 1}} checked {{/if}}> male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="inlineRadio2" value="0" {{if student.gender == 0}} checked {{/if}}> famale
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">age</label>
+                        <input name="age" type="number" class="form-control" id="age" placeholder="Please input age" value="{{student.age}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="info">Info</label>
+                        <textarea class="form-control" rows="3" name="info" id="info">{{student.info}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </div>
     </div>
