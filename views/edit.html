@@ -100,7 +100,7 @@
 
                 <h2 class="sub-header">UPDATE STUDENT</h2>
                 <form action="/students/edit" method="POST">
-                    <input type="hidden" value="{{student.id}}" name="id">
+                    <input type="hidden" value="{{student._id}}" name="id">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Please input name" value="{{student.name}}">
